@@ -27,7 +27,7 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px; /* Reduced width as requested */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -96,7 +96,7 @@ header {
 
 .banner-image {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px; /* Reduced width to match container */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -145,7 +145,7 @@ nav a.active::after {
 /* Section Styles */
 .section {
     padding: 5rem 0;
-    /* Sections are visible for scrolling */
+    /* All sections are visible for scrolling */
 }
 
 /* Home Section */
@@ -161,7 +161,7 @@ nav a.active::after {
 }
 
 .text-content {
-    flex: 1 1 600px;
+    flex: 1 1 500px; /* Adjusted for narrower layout */
 }
 
 .highlight-box {
@@ -203,8 +203,8 @@ nav a.active::after {
 
 .menu-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; /* Reduced gap for narrower layout */
     position: relative;
 }
 
@@ -315,60 +315,6 @@ nav a.active::after {
     margin-top: 0.5rem;
 }
 
-/* Gallery Section */
-#gallery {
-    background-color: var(--section-bg);
-}
-
-.gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.gallery-item {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
-    position: relative;
-    aspect-ratio: 4/3;
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.placeholder-image {
-    width: 100%;
-    height: 100%;
-    background-color: var(--light-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    text-align: center;
-}
-
-.placeholder-image i {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.placeholder-image p {
-    color: var(--dark-color);
-    font-weight: 500;
-}
-
 /* Contact Section */
 #contact {
     background-color: var(--background-color);
@@ -467,9 +413,5 @@ footer {
     
     nav li {
         margin: 0 0.5rem;
-    }
-    
-    .gallery-container {
-        grid-template-columns: 1fr;
     }
 }
