@@ -85,40 +85,59 @@ header {
     z-index: 100;
 }
 
-/* Banner Placeholder instead of WebP image */
+/* Banner with actual image */
 .banner {
     width: 100%;
     overflow: hidden;
     max-height: 250px;
 }
 
-.banner-placeholder {
+.banner-image {
     width: 100%;
     height: 220px;
-    background: linear-gradient(to right, #1a5f7a, #57c5b6);
+    position: relative;
+    background: url('images/banner.jpg') center center/cover no-repeat;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    text-align: center;
 }
 
-.banner-placeholder h1 {
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.banner-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+.banner-text h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
     color: white;
 }
 
-.banner-placeholder p {
+.banner-text p {
     font-size: 1.5rem;
     font-weight: 300;
 }
 
-.banner-placeholder h1::after {
+.banner-text h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
     background-color: white;
+    margin: 0.5rem auto 0;
 }
-
 nav {
     padding: 1rem 0;
     background-color: var(--primary-color);
