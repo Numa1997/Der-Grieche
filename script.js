@@ -1,5 +1,5 @@
 // DOM Elements
-const navLinks = document.querySelectorAll('.side-nav a');
+const navLinks = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('.section');
 const galleryGrid = document.getElementById('gallery-grid');
 
@@ -18,7 +18,7 @@ navLinks.forEach(link => {
         
         if (targetSection) {
             window.scrollTo({
-                top: targetSection.offsetTop - 30,
+                top: targetSection.offsetTop - 80,
                 behavior: 'smooth'
             });
         }
@@ -48,8 +48,8 @@ window.addEventListener('scroll', () => {
 
 // Dynamic gallery functionality
 function createGalleryItems() {
-    // This function will dynamically create gallery items
-    // The gallery uses placeholder elements initially
+    // This function will dynamically create gallery items when images are added
+    // The gallery uses placeholder elements until real images are added
     
     // Create placeholder gallery items
     const placeholderItems = [
@@ -87,12 +87,12 @@ function createGalleryItems() {
     }
 }
 
-// Function to load and display real images when they become available
+// Function to load and display real images
 function loadGalleryImages() {
     // This function can be used to load actual images when they are available
-    // For now, we're using placeholders
+    // It should replace the placeholders with real images
     
-    // When real images are available, uncomment this code:
+    // Example of adding a real image (uncomment when images are available)
     /*
     const imageFiles = ['dish1.jpg', 'restaurant.jpg', 'salad.jpg', 'seafood.jpg', 'cheese.jpg', 'terrace.jpg'];
     
@@ -114,7 +114,7 @@ function loadGalleryImages() {
     */
 }
 
-// Initialize gallery
+// Initialize gallery only if the element exists
 if (galleryGrid) {
     createGalleryItems();
 }
@@ -125,17 +125,18 @@ window.addEventListener('load', () => {
     const hash = window.location.hash;
     if (hash) {
         // Find the link with matching hash
-        const activeLink = document.querySelector(`.side-nav a[href="${hash}"]`);
+        const activeLink = document.querySelector(`nav a[href="${hash}"]`);
         if (activeLink) {
-            // Activate the correct section and scroll to it
+            // Activate the correct section
             navLinks.forEach(navLink => navLink.classList.remove('active'));
-            activeLink.classList.add('active');
+            sections.forEach(section => section.classList.remove('active'));
             
+            activeLink.classList.add('active');
             const targetSection = document.querySelector(hash);
             if (targetSection) {
                 setTimeout(() => {
                     window.scrollTo({
-                        top: targetSection.offsetTop - 30,
+                        top: targetSection.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }, 100);
