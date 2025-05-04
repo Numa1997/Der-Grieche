@@ -1,4 +1,4 @@
- // DOM Elements
+// DOM Elements
 const navLinks = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('.section');
 const galleryGrid = document.getElementById('gallery-grid');
@@ -8,22 +8,41 @@ navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         
-        // Remove active class from all links and sections
+        // Update active class for navigation
         navLinks.forEach(navLink => navLink.classList.remove('active'));
-        sections.forEach(section => section.classList.remove('active'));
-        
-        // Add active class to clicked link
         link.classList.add('active');
         
-        // Get the target section and activate it
-        const targetSection = document.querySelector(link.getAttribute('href'));
-        targetSection.classList.add('active');
+        // Get target section and smooth scroll to it
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
         
-        // Smooth scroll to target section
-        window.scrollTo({
-            top: targetSection.offsetTop - 80,
-            behavior: 'smooth'
-        });
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Add scroll event listener to update active nav based on scroll position
+window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = '#' + section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === current) {
+            link.classList.add('active');
+        }
     });
 });
 
@@ -73,8 +92,6 @@ function loadGalleryImages() {
     // This function can be used to load actual images when they are available
     // It should replace the placeholders with real images
     
-    // Example of adding a real image (uncomment when images are available)
-    /*
     const imageFiles = ['dish1.jpg', 'restaurant.jpg', 'salad.jpg', 'seafood.jpg', 'cheese.jpg', 'terrace.jpg'];
     
     if (galleryGrid) {
@@ -92,12 +109,13 @@ function loadGalleryImages() {
             }
         });
     }
-    */
 }
 
-// Initialize gallery only if the element exists
+// Initialize gallery
 if (galleryGrid) {
     createGalleryItems();
+    // Uncomment the line below when images are available
+    // loadGalleryImages();
 }
 
 // Handle page load and refresh
@@ -108,14 +126,18 @@ window.addEventListener('load', () => {
         // Find the link with matching hash
         const activeLink = document.querySelector(`nav a[href="${hash}"]`);
         if (activeLink) {
-            // Activate the correct section
+            // Activate the correct section and scroll to it
             navLinks.forEach(navLink => navLink.classList.remove('active'));
-            sections.forEach(section => section.classList.remove('active'));
-            
             activeLink.classList.add('active');
+            
             const targetSection = document.querySelector(hash);
             if (targetSection) {
-                targetSection.classList.add('active');
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }
         }
     }
