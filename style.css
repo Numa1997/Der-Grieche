@@ -430,6 +430,13 @@ nav a.active::after {
     font-weight: 500;
 }
 
+/* Ensure single-column on small screens */
+@media (max-width: 480px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* Contact Section */
 #contact {
