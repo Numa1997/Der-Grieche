@@ -18,7 +18,7 @@ navLinks.forEach(link => {
         
         if (targetSection) {
             window.scrollTo({
-                top: targetSection.offsetTop - 80,
+                top: targetSection.offsetTop - 30,
                 behavior: 'smooth'
             });
         }
@@ -48,8 +48,8 @@ window.addEventListener('scroll', () => {
 
 // Dynamic gallery functionality
 function createGalleryItems() {
-    // This function will dynamically create gallery items when images are added
-    // The gallery uses placeholder elements until real images are added
+    // This function will dynamically create gallery items
+    // The gallery uses placeholder elements initially
     
     // Create placeholder gallery items
     const placeholderItems = [
@@ -87,12 +87,12 @@ function createGalleryItems() {
     }
 }
 
-// Function to load and display real images
+// Function to load and display real images when they become available
 function loadGalleryImages() {
     // This function can be used to load actual images when they are available
-    // It should replace the placeholders with real images
+    // For now, we're using placeholders
     
-    // Example of adding a real image (uncomment when images are available)
+    // When real images are available, uncomment this code:
     /*
     const imageFiles = ['dish1.jpg', 'restaurant.jpg', 'salad.jpg', 'seafood.jpg', 'cheese.jpg', 'terrace.jpg'];
     
@@ -114,7 +114,7 @@ function loadGalleryImages() {
     */
 }
 
-// Initialize gallery only if the element exists
+// Initialize gallery
 if (galleryGrid) {
     createGalleryItems();
 }
@@ -127,15 +127,15 @@ window.addEventListener('load', () => {
         // Find the link with matching hash
         const activeLink = document.querySelector(`.side-nav a[href="${hash}"]`);
         if (activeLink) {
-            // Activate the correct section
+            // Activate the correct section and scroll to it
             navLinks.forEach(navLink => navLink.classList.remove('active'));
-            
             activeLink.classList.add('active');
+            
             const targetSection = document.querySelector(hash);
             if (targetSection) {
                 setTimeout(() => {
                     window.scrollTo({
-                        top: targetSection.offsetTop - 80,
+                        top: targetSection.offsetTop - 30,
                         behavior: 'smooth'
                     });
                 }, 100);
