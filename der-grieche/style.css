@@ -1,4 +1,4 @@
- /* Global Styles */
+/* Global Styles */
 :root {
     --primary-color: #1a5f7a;
     --secondary-color: #57c5b6;
@@ -204,10 +204,22 @@ nav a.active::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
+    position: relative;
 }
 
 .menu-category {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-category:hover {
+    transform: translateY(-5px);
 }
 
 .menu-category h2 {
@@ -216,16 +228,38 @@ nav a.active::after {
     border-bottom: 2px solid var(--secondary-color);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
+    position: relative;
+}
+
+.menu-category h2::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--light-color);
+    opacity: 0.5;
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .menu-item {
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: translateX(5px);
 }
 
 .menu-item:last-child {
     border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .menu-item-header {
@@ -235,21 +269,43 @@ nav a.active::after {
     margin-bottom: 0.5rem;
 }
 
+.menu-item-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    height: 100%;
+    width: 3px;
+    background-color: var(--secondary-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-item:hover .menu-item-header::after {
+    opacity: 1;
+}
+
 .menu-item h3 {
     margin: 0;
     color: var(--dark-color);
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .price {
     font-weight: 700;
     color: var(--accent-color);
     font-size: 1.1rem;
+    background-color: var(--light-color);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
 }
 
 .menu-item p {
     color: #666;
     font-size: 0.95rem;
     margin-bottom: 0.3rem;
+    line-height: 1.4;
 }
 
 .note {
